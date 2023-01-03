@@ -1,12 +1,15 @@
 {
-  "name": "api",
+  "name": "ShareEnergy TestApi",
   "version": "1.0.0",
-  "description": "",
+  "description": "Api do projeto de teste prático da ShareEnergy",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "18.12.1"
+  }
 }
