@@ -29,6 +29,7 @@
     "node": "18.12.1"
   },
   "dependencies": {
-    "mongodb": "^4.13.0"
+    "mongodb": "^4.13.0",
+    "mongoose": "^6.1.8"
   }
 }
