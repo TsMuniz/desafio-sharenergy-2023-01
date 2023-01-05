@@ -2,7 +2,8 @@
     "extends": "standard-with-typescript",
     "rules": {
         "@typescript-eslint/no-misused-promises": 0,
-        "@typescript-eslint/strict-boolean-expressions": 0
+        "@typescript-eslint/strict-boolean-expressions": 0,
+        "@typescript-eslint/restrict-plus-operands": 0
     },
     "parserOptions": {
         "project": "./tsconfig.json"
