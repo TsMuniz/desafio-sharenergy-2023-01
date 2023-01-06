@@ -1,5 +1,5 @@
 import { IClient } from '../Domain/Entities/Client'
-import { MongoClient } from 'mongodb'
+import { MongoClient, ObjectId } from 'mongodb'
 import { IClientRepository } from '../Domain/Repository/clientRepository'
 import CustomError from '../helpers/customError'
 
@@ -24,9 +24,9 @@ export class ClienteRepository implements IClientRepository {
     }
   }
 
-  public async readByEmail (email: string): Promise<IClient> {
+  public async readById (id: string): Promise<IClient> {
     const db = this.mongoClient.db(this.dbName)
-    const result = await db.collection('Clients').findOne({ email })
+    const result = await db.collection('Clients').findOne({ _id: new ObjectId(id) })
     return result
   }
 
