@@ -9,5 +9,3 @@ const repository = new UserRepository('ShareEnergyDB', mongoClient)
 const login = new Login(repository)
 
 loginRouter.post('/', login.execute.bind(login))
-loginRouter.put('/access')
-loginRouter.put('/changeAccess')

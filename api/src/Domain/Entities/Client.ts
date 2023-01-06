@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb'
 
-interface Address {
+export interface Address {
   street: string
   city: string
   state: string
