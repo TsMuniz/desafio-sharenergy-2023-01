@@ -1,11 +1,19 @@
 import { ObjectId } from 'mongodb'
 
+interface Address {
+  street: string
+  city: string
+  state: string
+  zipcode: string
+  country: string
+}
+
 export interface IClient {
   id?: string
   _id?: ObjectId
   name: string
   email: string
-  address: string
+  address: Address
   phoneNumber: string
   cpf: string
 }
@@ -13,7 +21,7 @@ export interface IClient {
 export class Client {
   name: string
   email: string
-  address: string
+  address: Address
   phoneNumber: string
   cpf: string
 

@@ -29,7 +29,7 @@ export class ClienteRepository implements IClientRepository {
     await db.collection('Clients').find().forEach((doc: IClient) => {
       const { _id, name, phoneNumber, cpf, address, email } = doc
       result.push({ id: _id?.toHexString(), name, phoneNumber, cpf, address, email })
-    }) as IClient
+    })
     return result
   }
 
