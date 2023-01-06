@@ -14,12 +14,13 @@ export class UserRepository implements IUserRepository {
   public async create (user: IUser): Promise<void> {
     const db = this.mongoClient.db(this.dbName)
     await db.collection('Users').insertOne(user)
+    await db.collection('Users').createIndex({ name: 1 }, { unique: true })
   }
 
-  public async readByEmail (input: string): Promise<IUser> {
+  public async readByName (input: string): Promise<IUser> {
     const db = this.mongoClient.db(this.dbName)
-    const result = await db.collection('Users').findOne({ email: input }) as IUser
-    const { _id, name, email, password } = result
-    return { id: _id?.toHexString(), name, email, password }
+    const result = await db.collection('Users').findOne({ name: input }) as IUser
+    const { _id, name, password } = result
+    return { id: _id?.toHexString(), name, password }
   }
 }
