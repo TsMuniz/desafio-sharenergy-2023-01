@@ -5,7 +5,7 @@ import { UserRepository } from '../repository/userRepository'
 
 export const loginRouter = Router()
 const mongoClient = new MongoConnection().getClient()
-const repository = new UserRepository('ShareEnergy', mongoClient)
+const repository = new UserRepository('ShareEnergyDB', mongoClient)
 const login = new Login(repository)
 
 loginRouter.post('/', login.execute.bind(login))
