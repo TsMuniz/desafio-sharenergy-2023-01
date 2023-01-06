@@ -1,6 +1,6 @@
 import { IClient } from '../Domain/Entities/Client'
 import { MongoClient, ObjectId } from 'mongodb'
-import { IClientRepository } from '../Domain/Repository/clientRepository'
+import { IClientRepository, IDeleteResponse } from '../Domain/Repository/clientRepository'
 import CustomError from '../helpers/customError'
 
 export class ClienteRepository implements IClientRepository {
@@ -40,13 +40,22 @@ export class ClienteRepository implements IClientRepository {
     return result
   }
 
-  public async update (id: string, body: any): Promise<void> {
+  public async update (id: string, body: any): Promise<any> {
     const db = this.mongoClient.db(this.dbName)
-    await db.collection('Clients').updateOne({ _id: id }, { $set: body })
+    try {
+      const response = await db
+        .collection('Clients')
+        .updateOne({ _id: new ObjectId(id) }, { $set: body })
+      return response
+    } catch ({ code, message }) {
+      if (code === 11000) throw new CustomError('valor igual ao atual!', 400)
+      throw new CustomError('Erro inesperado!', 500)
+    }
   }
 
-  public async delete (id: string): Promise<void> {
+  public async delete (id: string): Promise<IDeleteResponse> {
     const db = this.mongoClient.db(this.dbName)
-    await db.collection('Clients').deleteOne({ _id: id })
+    const response = await db.collection('Clients').deleteOne({ _id: new ObjectId(id) })
+    return response
   }
 }
